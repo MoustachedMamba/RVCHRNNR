@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bieh6oo51012d"]
+
+[ext_resource type="Texture2D" uid="uid://c8g054a2okjc0" path="res://Assets/Sprites/deathscreen.PNG" id="1_ghd5x"]
+
+[node name="DeathScreen" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ghd5x")

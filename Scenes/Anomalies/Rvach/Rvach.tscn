@@ -1,0 +1,161 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjb716gh7bht7"]
+
+[ext_resource type="Script" path="res://Scenes/Anomalies/Rvach/Rvach.gd" id="1_badep"]
+[ext_resource type="Texture2D" uid="uid://bdfsxue8cr41w" path="res://Assets/Sprites/misc_tilesheer.png" id="2_3ltw7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_240gb"]
+size = Vector2(96, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ke6yf"]
+
+[node name="Rvach" type="Node2D"]
+script = ExtResource("1_badep")
+
+[node name="ActivationArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationArea"]
+shape = SubResource("RectangleShape2D_240gb")
+
+[node name="Deathzone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone"]
+shape = SubResource("RectangleShape2D_ke6yf")
+
+[node name="InnerPusher" type="Node2D" parent="."]
+
+[node name="Up" type="Area2D" parent="InnerPusher"]
+position = Vector2(0, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InnerPusher/Up"]
+shape = SubResource("RectangleShape2D_ke6yf")
+
+[node name="RayCast2D" type="RayCast2D" parent="InnerPusher/Up"]
+target_position = Vector2(0, -32)
+
+[node name="UpRight" type="Area2D" parent="InnerPusher"]
+position = Vector2(32, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InnerPusher/UpRight"]
+shape = SubResource("RectangleShape2D_ke6yf")
+
+[node name="RayCast2D" type="RayCast2D" parent="InnerPusher/UpRight"]
+target_position = Vector2(32, -32)
+
+[node name="Right" type="Area2D" parent="InnerPusher"]
+position = Vector2(32, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InnerPusher/Right"]
+shape = SubResource("RectangleShape2D_ke6yf")
+
+[node name="RayCast2D" type="RayCast2D" parent="InnerPusher/Right"]
+target_position = Vector2(32, 0)
+
+[node name="DownRight" type="Area2D" parent="InnerPusher"]
+position = Vector2(32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InnerPusher/DownRight"]
+shape = SubResource("RectangleShape2D_ke6yf")
+
+[node name="RayCast2D" type="RayCast2D" parent="InnerPusher/DownRight"]
+target_position = Vector2(32, 32)
+
+[node name="Down" type="Area2D" parent="InnerPusher"]
+position = Vector2(0, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InnerPusher/Down"]
+shape = SubResource("RectangleShape2D_ke6yf")
+
+[node name="RayCast2D" type="RayCast2D" parent="InnerPusher/Down"]
+target_position = Vector2(0, 32)
+
+[node name="DownLeft" type="Area2D" parent="InnerPusher"]
+position = Vector2(-32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InnerPusher/DownLeft"]
+shape = SubResource("RectangleShape2D_ke6yf")
+
+[node name="RayCast2D" type="RayCast2D" parent="InnerPusher/DownLeft"]
+target_position = Vector2(-32, 32)
+
+[node name="Left" type="Area2D" parent="InnerPusher"]
+position = Vector2(-32, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InnerPusher/Left"]
+shape = SubResource("RectangleShape2D_ke6yf")
+
+[node name="RayCast2D" type="RayCast2D" parent="InnerPusher/Left"]
+target_position = Vector2(-32, 0)
+
+[node name="UpLeft" type="Area2D" parent="InnerPusher"]
+position = Vector2(-32, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InnerPusher/UpLeft"]
+shape = SubResource("RectangleShape2D_ke6yf")
+
+[node name="RayCast2D" type="RayCast2D" parent="InnerPusher/UpLeft"]
+target_position = Vector2(-32, -32)
+
+[node name="Sprite" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D1" type="Sprite2D" parent="Sprite"]
+position = Vector2(-32, -32)
+texture = ExtResource("2_3ltw7")
+hframes = 8
+frame = 7
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite"]
+position = Vector2(0, -32)
+texture = ExtResource("2_3ltw7")
+hframes = 8
+frame = 7
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite"]
+position = Vector2(32, -32)
+texture = ExtResource("2_3ltw7")
+hframes = 8
+frame = 7
+
+[node name="Sprite2D4" type="Sprite2D" parent="Sprite"]
+position = Vector2(-32, 0)
+texture = ExtResource("2_3ltw7")
+hframes = 8
+frame = 7
+
+[node name="Sprite2D5" type="Sprite2D" parent="Sprite"]
+texture = ExtResource("2_3ltw7")
+hframes = 8
+frame = 7
+
+[node name="Sprite2D6" type="Sprite2D" parent="Sprite"]
+position = Vector2(32, 0)
+texture = ExtResource("2_3ltw7")
+hframes = 8
+frame = 7
+
+[node name="Sprite2D7" type="Sprite2D" parent="Sprite"]
+position = Vector2(-32, 32)
+texture = ExtResource("2_3ltw7")
+hframes = 8
+frame = 7
+
+[node name="Sprite2D8" type="Sprite2D" parent="Sprite"]
+position = Vector2(0, 32)
+texture = ExtResource("2_3ltw7")
+hframes = 8
+frame = 7
+
+[node name="Sprite2D9" type="Sprite2D" parent="Sprite"]
+position = Vector2(32, 32)
+texture = ExtResource("2_3ltw7")
+hframes = 8
+frame = 7
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="ZasosTimer" type="Timer" parent="."]
+
+[node name="DeactivationTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="ActivationArea" to="." method="_on_area_2d_body_entered"]
