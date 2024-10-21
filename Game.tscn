@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgteg88tqr32r"]
+[gd_scene load_steps=7 format=3 uid="uid://dgteg88tqr32r"]
 
 [ext_resource type="Script" path="res://Game.gd" id="1_7mxvr"]
-[ext_resource type="AudioStream" uid="uid://rh2x1vbt8ti3" path="res://Assets/Sounds/press_x_twice_looped.mp3" id="1_xbcxo"]
-[ext_resource type="PackedScene" uid="uid://dyu0fogpcbqvb" path="res://Scenes/Player.tscn" id="2_rroqc"]
+[ext_resource type="PackedScene" uid="uid://duycglnwfyku3" path="res://Scenes/Player.tscn" id="2_rroqc"]
 [ext_resource type="Script" path="res://MapController.gd" id="4_yb80y"]
 [ext_resource type="PackedScene" uid="uid://bjb716gh7bht7" path="res://Scenes/Anomalies/Rvach/Rvach.tscn" id="5_xceem"]
 
@@ -13,24 +12,23 @@ size = Vector2(1089.94, 52.7043)
 script/source = "extends Camera2D
 
 
-@onready var ply = get_tree().get_nodes_in_group(\"Player\")[0]
+@export var player: CharacterBody2D
 
 
 func _process(delta):
-	self.position.y = ply.position.y - 64
+	self.position.y = player.position.y - 64
 "
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7mxvr")
 
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("1_xbcxo")
-
-[node name="Player" parent="." instance=ExtResource("2_rroqc")]
+[node name="Player" parent="." node_paths=PackedStringArray("map") instance=ExtResource("2_rroqc")]
 position = Vector2(0, -16)
+map = NodePath("../Map")
 
-[node name="Map" type="Node2D" parent="." groups=["Map"]]
+[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("player") groups=["Map"]]
 script = ExtResource("4_yb80y")
+player = NodePath("../Player")
 
 [node name="Area2D" type="Area2D" parent="Map"]
 scale = Vector2(0.351334, 0.609255)
@@ -47,8 +45,9 @@ wait_time = 0.85
 [node name="Rvach" parent="Map" instance=ExtResource("5_xceem")]
 position = Vector2(0, -112)
 
-[node name="MainCamera" type="Camera2D" parent="."]
+[node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
 zoom = Vector2(2, 2)
 script = SubResource("GDScript_js3b4")
+player = NodePath("../Player")
 
 [connection signal="body_entered" from="Map/Area2D" to="Map" method="_on_area_2d_body_entered"]

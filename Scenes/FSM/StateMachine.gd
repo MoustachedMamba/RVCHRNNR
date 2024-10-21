@@ -14,7 +14,7 @@ func _ready() -> void:
 	state.enter("")
 
 
-func _unhandled_unput(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	state.handle_input(event)
 
 

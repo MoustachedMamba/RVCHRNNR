@@ -1,6 +1,7 @@
 extends Node2D
 
 
+@export var player: CharacterBody2D
 @export var STEP_SPEED := 15.0
 
 
@@ -13,23 +14,18 @@ var CHUNK_COUNTER := 0
 var CHUNK_LIST: Array[TileMapLayer] = []
 
 
-@onready var ply = get_tree().get_nodes_in_group("Player")[0]
 @onready var area := $Area2D
-@onready var timer := $StepTimer
-@onready var start_timer := $StartTimer
+
 
 func _ready():
 	spawn_new_chunk()
 	spawn_new_chunk()
 	spawn_new_chunk()
-	timer.timeout.connect(make_step)
-	timer.start(0.45)
 
 
 func make_step():
 	var tween := create_tween()
 	tween.tween_property(self, "position", Vector2(position.x, position.y + 32), 1 / STEP_SPEED)
-	timer.start()
 
 
 func spawn_new_chunk():
@@ -47,6 +43,6 @@ func spawn_new_chunk():
 
 
 func _on_area_2d_body_entered(body):
-	if body == ply:
+	if body == player:
 		spawn_new_chunk()
 		area.position.y -= 288

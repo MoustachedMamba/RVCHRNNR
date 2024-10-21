@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@onready var music := $Music
+@onready var music := $Player/Music
 
 
 func _ready():
