@@ -9,7 +9,6 @@ enum DIRECTION {LEFT, RIGHT}
 @onready var step_timer: Timer = $StepTimer
 @onready var left_raycast: RayCast2D = $LeftRayCast
 @onready var right_raycast: RayCast2D = $RightRayCast
-@onready var beat_notifier: RhythmNotifier = $RhythmNotifier
 @onready var music: AudioStreamPlayer2D = $Music
 @onready var progress_bar: TextureProgressBar = $ProgressBar
 
