@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://duycglnwfyku3"]
+[gd_scene load_steps=10 format=3 uid="uid://duycglnwfyku3"]
 
 [ext_resource type="Script" path="res://Scenes/Player.gd" id="1_5gepb"]
 [ext_resource type="AudioStream" uid="uid://rx82kl1a2tb4" path="res://Assets/Sounds/press_x_twice_looped.mp3" id="2_ck3bq"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://addons/rhythm_notifier/rhythm_notifier.gd" id="2_t1otg"]
 [ext_resource type="Script" path="res://Scenes/FSM/StateMachine.gd" id="3_4fpsx"]
 [ext_resource type="Script" path="res://Scenes/FSM/PlayerController/Moving.gd" id="4_76jk5"]
+[ext_resource type="Texture2D" uid="uid://ds5ecrudcp4oh" path="res://Assets/Sprites/progressbar.png" id="7_b82oc"]
+[ext_resource type="Script" path="res://Scenes/FSM/PlayerController/Idle.gd" id="7_ut1wk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppbvu"]
 size = Vector2(30, 30)
@@ -37,9 +39,24 @@ target_position = Vector2(32, 0)
 [node name="StepTimer" type="Timer" parent="."]
 wait_time = 0.462
 
+[node name="RunTimer" type="Timer" parent="."]
+wait_time = 0.231
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_4fpsx")
-initial_state = NodePath("Moving")
+initial_state = NodePath("Idle")
 
 [node name="Moving" type="Node" parent="StateMachine"]
 script = ExtResource("4_76jk5")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("7_ut1wk")
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+modulate = Color(1, 1, 1, 0.647059)
+offset_left = -17.0
+offset_top = -17.0
+offset_right = 17.0
+offset_bottom = 17.0
+fill_mode = 4
+texture_progress = ExtResource("7_b82oc")

@@ -12,6 +12,7 @@ func _ready() -> void:
 		state_node.finished.connect(_transition_to_next_state)
 	await owner.ready
 	state.enter("")
+	print("READY")
 
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -3,7 +3,14 @@ class_name Moving extends PCState
 
 func _ready():
 	await owner.ready
+
+
+func enter(previous_state_path: String, data := {}) -> void:
 	player.step_timer.timeout.connect(make_step)
+
+
+func exit() -> void:
+	player.step_timer.timeout.disconnect(make_step)
 
 
 func handle_input(_event: InputEvent) -> void:
@@ -13,6 +20,7 @@ func handle_input(_event: InputEvent) -> void:
 		player.strafe(player.DIRECTION.LEFT)
 	if _event.is_action_pressed("d"):
 		player.strafe(player.DIRECTION.RIGHT)
+
 
 func make_step():
 	player.map.make_step()
