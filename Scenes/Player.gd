@@ -13,13 +13,15 @@ enum DIRECTION {LEFT, RIGHT}
 @onready var progress_bar: TextureProgressBar = $ProgressBar
 
 var strafe_locked: bool = false
-
+var step_locked: bool = false
 
 func _ready():
 	pass
 
 
 func make_step():
+	if step_locked:
+		return
 	map.make_step()
 	step_timer.start()
 
