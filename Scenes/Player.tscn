@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://duycglnwfyku3"]
+[gd_scene load_steps=10 format=3 uid="uid://duycglnwfyku3"]
 
 [ext_resource type="Script" path="res://Scenes/Player.gd" id="1_5gepb"]
 [ext_resource type="Texture2D" uid="uid://viu8bupo54xd" path="res://Assets/Sprites/provodnik.png" id="2_gyfow"]
-[ext_resource type="Script" path="res://addons/rhythm_notifier/rhythm_notifier.gd" id="2_t1otg"]
 [ext_resource type="Script" path="res://Scenes/FSM/StateMachine.gd" id="3_4fpsx"]
 [ext_resource type="AudioStream" uid="uid://dlhsb0hg4x3o7" path="res://Assets/Sounds/theme_looped.mp3" id="3_r6ajn"]
 [ext_resource type="Script" path="res://Scenes/FSM/PlayerController/Moving.gd" id="4_76jk5"]
@@ -16,11 +15,6 @@ size = Vector2(30, 30)
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 script = ExtResource("1_5gepb")
-
-[node name="RhythmNotifier" type="Node" parent="."]
-script = ExtResource("2_t1otg")
-bpm = 130.0
-beat_length = 0.461538
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ppbvu")
