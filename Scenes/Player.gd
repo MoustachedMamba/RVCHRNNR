@@ -11,6 +11,7 @@ enum DIRECTION {LEFT, RIGHT}
 @onready var right_raycast: RayCast2D = $RightRayCast
 @onready var beat_notifier: RhythmNotifier = $RhythmNotifier
 @onready var music: AudioStreamPlayer2D = $Music
+@onready var progress_bar: TextureProgressBar = $ProgressBar
 
 var strafe_locked: bool = false
 
