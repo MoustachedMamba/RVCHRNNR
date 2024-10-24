@@ -8,5 +8,6 @@ func handle_input(_event: InputEvent) -> void:
 
 func exit():
 	player.step_timer.start()
+	player.run_timer.start()
 	player.music.play()
 	player.map.make_step()

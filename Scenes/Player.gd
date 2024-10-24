@@ -6,7 +6,9 @@ enum DIRECTION {LEFT, RIGHT}
 @export var map: Node2D
 @export var speed: float = 10.0
 
+@onready var run_timer = $RunTimer
 @onready var step_timer: Timer = $StepTimer
+
 @onready var left_raycast: RayCast2D = $LeftRayCast
 @onready var right_raycast: RayCast2D = $RightRayCast
 @onready var forward_raycast: RayCast2D = $ForwardRayCast

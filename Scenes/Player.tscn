@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://duycglnwfyku3"]
+[gd_scene load_steps=12 format=3 uid="uid://duycglnwfyku3"]
 
 [ext_resource type="Script" path="res://Scenes/Player.gd" id="1_5gepb"]
 [ext_resource type="Texture2D" uid="uid://viu8bupo54xd" path="res://Assets/Sprites/provodnik.png" id="2_gyfow"]
@@ -7,7 +7,9 @@
 [ext_resource type="Script" path="res://Scenes/FSM/PlayerController/Moving.gd" id="4_76jk5"]
 [ext_resource type="Texture2D" uid="uid://ds5ecrudcp4oh" path="res://Assets/Sprites/progressbar.png" id="7_b82oc"]
 [ext_resource type="Script" path="res://Scenes/FSM/PlayerController/Idle.gd" id="7_ut1wk"]
+[ext_resource type="Script" path="res://Scenes/FSM/PlayerController/Running.gd" id="8_aa2ku"]
 [ext_resource type="Script" path="res://Scenes/FSM/PlayerController/Looking.gd" id="8_wkhrb"]
+[ext_resource type="Script" path="res://Scenes/FSM/PlayerController/Prone.gd" id="9_varcg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppbvu"]
 size = Vector2(30, 30)
@@ -58,6 +60,12 @@ script = ExtResource("7_ut1wk")
 
 [node name="Looking" type="Node" parent="StateMachine"]
 script = ExtResource("8_wkhrb")
+
+[node name="Running" type="Node" parent="StateMachine"]
+script = ExtResource("8_aa2ku")
+
+[node name="Prone" type="Node" parent="StateMachine"]
+script = ExtResource("9_varcg")
 
 [node name="ProgressBar" type="TextureProgressBar" parent="."]
 modulate = Color(1, 1, 1, 0.647059)
