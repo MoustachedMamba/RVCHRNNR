@@ -1,6 +1,9 @@
 extends Node2D
 
 
+signal step_finished
+
+
 @export var player: CharacterBody2D
 @export var STEP_SPEED := 15.0
 
@@ -26,6 +29,8 @@ func _ready():
 func make_step():
 	var tween := create_tween()
 	tween.tween_property(self, "position", Vector2(position.x, position.y + 32), 1 / STEP_SPEED)
+	await tween.finished
+	step_finished.emit()
 
 
 func spawn_new_chunk():

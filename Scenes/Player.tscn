@@ -26,10 +26,15 @@ parameters/looping = true
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_gyfow")
 
+[node name="ForwardRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, -32)
+
 [node name="LeftRayCast" type="RayCast2D" parent="."]
+position = Vector2(0, -15.999)
 target_position = Vector2(-32, 0)
 
 [node name="RightRayCast" type="RayCast2D" parent="."]
+position = Vector2(0, -15.999)
 target_position = Vector2(32, 0)
 
 [node name="StepTimer" type="Timer" parent="."]
@@ -62,3 +67,9 @@ offset_right = 17.0
 offset_bottom = 17.0
 fill_mode = 4
 texture_progress = ExtResource("7_b82oc")
+
+[node name="LeftUpRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(-32, -32)
+
+[node name="RightUpRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(32, -32)

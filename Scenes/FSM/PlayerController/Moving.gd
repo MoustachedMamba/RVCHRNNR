@@ -2,11 +2,11 @@ class_name Moving extends PCState
 
 
 func enter(previous_state_path: String, data := {}) -> void:
-	player.step_timer.timeout.connect(make_step)
+	player.step_timer.timeout.connect(player.make_step)
 
 
 func exit() -> void:
-	player.step_timer.timeout.disconnect(make_step)
+	player.step_timer.timeout.disconnect(player.make_step)
 
 
 func handle_input(_event: InputEvent) -> void:
@@ -23,9 +23,3 @@ func handle_input(_event: InputEvent) -> void:
 		player.strafe_locked = false
 		player.step_locked = false
 		state_machine._transition_to_next_state(LOOKING)
-
-
-func make_step():
-	if player.step_locked:
-		return
-	player.map.make_step()
