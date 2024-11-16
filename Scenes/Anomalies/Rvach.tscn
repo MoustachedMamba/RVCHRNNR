@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxp7p0wlj2s8p"]
+
+[ext_resource type="Texture2D" uid="uid://bel1pmyvc0ou1" path="res://Assets/Sprites/anomalies.png" id="1_ao8er"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rn0ql"]
+size = Vector2(96, 96)
+
+[node name="Rvach" type="Node2D"]
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="RedThing" type="Sprite2D" parent="Sprite"]
+texture = ExtResource("1_ao8er")
+hframes = 7
+frame = 2
+
+[node name="RedThing2" type="Sprite2D" parent="Sprite"]
+position = Vector2(-32, 0)
+texture = ExtResource("1_ao8er")
+hframes = 7
+frame = 2
+
+[node name="RedThing3" type="Sprite2D" parent="Sprite"]
+position = Vector2(-32, -32)
+texture = ExtResource("1_ao8er")
+hframes = 7
+frame = 2
+
+[node name="RedThing4" type="Sprite2D" parent="Sprite"]
+position = Vector2(0, 32)
+texture = ExtResource("1_ao8er")
+hframes = 7
+frame = 2
+
+[node name="RedThing5" type="Sprite2D" parent="Sprite"]
+position = Vector2(32, 32)
+texture = ExtResource("1_ao8er")
+hframes = 7
+frame = 2
+
+[node name="RedThing6" type="Sprite2D" parent="Sprite"]
+position = Vector2(32, 0)
+texture = ExtResource("1_ao8er")
+hframes = 7
+frame = 2
+
+[node name="RedThing7" type="Sprite2D" parent="Sprite"]
+position = Vector2(32, -32)
+texture = ExtResource("1_ao8er")
+hframes = 7
+frame = 2
+
+[node name="RedThing8" type="Sprite2D" parent="Sprite"]
+position = Vector2(0, -32)
+texture = ExtResource("1_ao8er")
+hframes = 7
+frame = 2
+
+[node name="RedThing9" type="Sprite2D" parent="Sprite"]
+position = Vector2(-32, 32)
+texture = ExtResource("1_ao8er")
+hframes = 7
+frame = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rn0ql")

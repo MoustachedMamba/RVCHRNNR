@@ -15,7 +15,7 @@ script/source = "extends Camera2D
 
 
 func _process(delta):
-	self.position.y = player.position.y - 64
+	self.position.y = player.position.y - 82
 "
 
 [node name="Game" type="Node2D"]

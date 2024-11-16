@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://duycglnwfyku3"]
+[gd_scene load_steps=13 format=3 uid="uid://duycglnwfyku3"]
 
 [ext_resource type="Script" path="res://Scenes/Player.gd" id="1_5gepb"]
 [ext_resource type="Texture2D" uid="uid://viu8bupo54xd" path="res://Assets/Sprites/provodnik.png" id="2_gyfow"]
@@ -14,30 +14,82 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppbvu"]
 size = Vector2(30, 30)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7c4t"]
+size = Vector2(32, 32)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 script = ExtResource("1_5gepb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ppbvu")
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_r6ajn")
+attenuation = 1e-05
 parameters/looping = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_gyfow")
 
-[node name="ForwardRayCast" type="RayCast2D" parent="."]
+[node name="Ray" type="Node2D" parent="."]
+
+[node name="ForwardRayCast" type="RayCast2D" parent="Ray"]
 target_position = Vector2(0, -32)
 
-[node name="LeftRayCast" type="RayCast2D" parent="."]
-position = Vector2(0, -15.999)
+[node name="LeftRayCast" type="RayCast2D" parent="Ray"]
 target_position = Vector2(-32, 0)
 
-[node name="RightRayCast" type="RayCast2D" parent="."]
-position = Vector2(0, -15.999)
+[node name="RightRayCast" type="RayCast2D" parent="Ray"]
 target_position = Vector2(32, 0)
+
+[node name="LeftUpRayCast" type="RayCast2D" parent="Ray"]
+target_position = Vector2(-32, -32)
+
+[node name="RightUpRayCast" type="RayCast2D" parent="Ray"]
+target_position = Vector2(32, -32)
+
+[node name="Areas" type="Node2D" parent="."]
+
+[node name="Left" type="Area2D" parent="Areas"]
+position = Vector2(-32, 0)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Left"]
+shape = SubResource("RectangleShape2D_q7c4t")
+
+[node name="Right" type="Area2D" parent="Areas"]
+position = Vector2(32, 0)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Right"]
+shape = SubResource("RectangleShape2D_q7c4t")
+
+[node name="Up" type="Area2D" parent="Areas"]
+position = Vector2(0, -32)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Up"]
+shape = SubResource("RectangleShape2D_q7c4t")
+
+[node name="LeftUp" type="Area2D" parent="Areas"]
+position = Vector2(-32, -32)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/LeftUp"]
+shape = SubResource("RectangleShape2D_q7c4t")
+
+[node name="RightUp" type="Area2D" parent="Areas"]
+position = Vector2(32, -32)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/RightUp"]
+shape = SubResource("RectangleShape2D_q7c4t")
 
 [node name="StepTimer" type="Timer" parent="."]
 wait_time = 0.462
@@ -75,9 +127,3 @@ offset_right = 17.0
 offset_bottom = 17.0
 fill_mode = 4
 texture_progress = ExtResource("7_b82oc")
-
-[node name="LeftUpRayCast" type="RayCast2D" parent="."]
-target_position = Vector2(-32, -32)
-
-[node name="RightUpRayCast" type="RayCast2D" parent="."]
-target_position = Vector2(32, -32)

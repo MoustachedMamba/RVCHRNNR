@@ -10,9 +10,6 @@ func exit() -> void:
 
 
 func handle_input(_event: InputEvent) -> void:
-	if _event.is_action_pressed("esc"):
-		get_tree().quit()
-	
 	if _event.is_action_pressed("a"):
 		player.strafe(player.DIRECTION.LEFT)
 	
