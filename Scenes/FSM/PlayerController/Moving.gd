@@ -22,19 +22,19 @@ func handle_input(_event: InputEvent) -> void:
 		await player.step_timer.timeout
 		player.strafe_locked = false
 		player.step_locked = false
-		state_machine._transition_to_next_state(LOOKING)
+		state_machine.change_state(LOOKING)
 	
 	if _event.is_action_pressed("shift"):
 		await player.step_timer.timeout
-		state_machine._transition_to_next_state(RUNNING)
+		state_machine.change_state(RUNNING)
 	
 	if Input.is_action_just_released("shift"):
 		await player.step_timer.timeout
-		state_machine._transition_to_next_state(MOVING)
+		state_machine.change_state(MOVING)
 
 	if _event.is_action_pressed("c"):
 		if player.is_moving:
 			await player.map.step_finished
-			state_machine._transition_to_next_state(PRONE)
+			state_machine.change_state(PRONE)
 		else:
-			state_machine._transition_to_next_state(PRONE)
+			state_machine.change_state(PRONE)

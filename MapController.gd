@@ -4,6 +4,9 @@ extends Node2D
 signal step_finished
 
 
+var CURRENT_OFFSET: = Vector2(0.0, 320)
+
+
 @export var player: CharacterBody2D
 @export var STEP_SPEED := 15.0
 
@@ -27,14 +30,15 @@ func _ready():
 
 
 func make_step():
+	CURRENT_OFFSET -= Vector2(0, 32)
 	var tween := create_tween()
 	tween.tween_property(self, "position", Vector2(position.x, position.y + 32), 1 / STEP_SPEED)
+	print(tween)
 	await tween.finished
 	step_finished.emit()
 
 
 func spawn_new_chunk():
-	print("Spawned new chunk.")
 	var new_chunk := CHUNK.instantiate()
 	new_chunk.position.y = -288 * CHUNK_COUNTER
 	new_chunk.position.x = -176
@@ -43,7 +47,6 @@ func spawn_new_chunk():
 	CHUNK_COUNTER += 1
 	if CHUNK_COUNTER > 3:
 		var chunk_to_delete = CHUNK_LIST.pop_front()
-		print("Deleteting chunk!")
 		chunk_to_delete.queue_free()
 
 

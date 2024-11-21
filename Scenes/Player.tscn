@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://duycglnwfyku3"]
+[gd_scene load_steps=14 format=3 uid="uid://duycglnwfyku3"]
 
 [ext_resource type="Script" path="res://Scenes/Player.gd" id="1_5gepb"]
 [ext_resource type="Texture2D" uid="uid://viu8bupo54xd" path="res://Assets/Sprites/provodnik.png" id="2_gyfow"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scenes/FSM/PlayerController/Running.gd" id="8_aa2ku"]
 [ext_resource type="Script" path="res://Scenes/FSM/PlayerController/Looking.gd" id="8_wkhrb"]
 [ext_resource type="Script" path="res://Scenes/FSM/PlayerController/Prone.gd" id="9_varcg"]
+[ext_resource type="AudioStream" uid="uid://c7f3numlqk87o" path="res://Assets/Sounds/death.mp3" id="11_8hw8f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppbvu"]
 size = Vector2(30, 30)
@@ -23,11 +24,6 @@ script = ExtResource("1_5gepb")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ppbvu")
-
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_r6ajn")
-attenuation = 1e-05
-parameters/looping = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_gyfow")
@@ -48,6 +44,15 @@ target_position = Vector2(-32, -32)
 
 [node name="RightUpRayCast" type="RayCast2D" parent="Ray"]
 target_position = Vector2(32, -32)
+
+[node name="DownRayCast" type="RayCast2D" parent="Ray"]
+target_position = Vector2(0, 32)
+
+[node name="RightDownRayCast" type="RayCast2D" parent="Ray"]
+target_position = Vector2(32, 32)
+
+[node name="LeftDownRayCast" type="RayCast2D" parent="Ray"]
+target_position = Vector2(-32, 32)
 
 [node name="Areas" type="Node2D" parent="."]
 
@@ -91,6 +96,30 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/RightUp"]
 shape = SubResource("RectangleShape2D_q7c4t")
 
+[node name="RightDown" type="Area2D" parent="Areas"]
+position = Vector2(32, 32)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/RightDown"]
+shape = SubResource("RectangleShape2D_q7c4t")
+
+[node name="Down" type="Area2D" parent="Areas"]
+position = Vector2(0, 32)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Down"]
+shape = SubResource("RectangleShape2D_q7c4t")
+
+[node name="LeftDown" type="Area2D" parent="Areas"]
+position = Vector2(-32, 32)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/LeftDown"]
+shape = SubResource("RectangleShape2D_q7c4t")
+
 [node name="StepTimer" type="Timer" parent="."]
 wait_time = 0.462
 
@@ -127,3 +156,11 @@ offset_right = 17.0
 offset_bottom = 17.0
 fill_mode = 4
 texture_progress = ExtResource("7_b82oc")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_r6ajn")
+attenuation = 1e-05
+parameters/looping = true
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_8hw8f")

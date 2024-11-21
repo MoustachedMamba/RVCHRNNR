@@ -5,8 +5,11 @@ class_name Prone extends PCState
 	player.LEFT: _left_crawl,
 	player.RIGHT: _right_crawl,
 	player.UP: _up_crawl,
-	player.RIGHTUP: _rightup_crawl,
-	player.LEFTUP: _leftup_crawl
+	player.UPRIGHT: _rightup_crawl,
+	player.UPLEFT: _leftup_crawl,
+	player.DOWNRIGHT: _rightdown_crawl,
+	player.DOWNLEFT: _leftdown_crawl,
+	player.DOWN: _down_crawl
 }
 
 
@@ -16,10 +19,8 @@ func _ready() -> void:
 
 func handle_input(_event: InputEvent) -> void:
 	if _event.is_action_pressed("c"):
-		var tween := create_tween()
-		tween.tween_property(player.progress_bar, "value", 100, 1)
-		await tween.finished
-		player.progress_bar.value = 0
+		player.stand()
+		await player.stand_finished
 		state_machine._transition_to_next_state(MOVING)
 
 
@@ -34,24 +35,12 @@ func physics_update(_delta: float) -> void:
 func enter(previous_state_path: String, data := {}) -> void:
 	for key in dic.keys():
 		player.area[key].input_event.connect(dic[key])
-
-	player.strafe_locked = true
-	player.step_locked = true
-	var tween := create_tween()
-	tween.tween_property(player.sprite, "rotation", 90 * PI / 180, 0.1)
-	await tween.finished
+	player.fall()
 
 
 func exit() -> void:
 	for key in dic.keys():
 		player.area[key].input_event.disconnect(dic[key])
-	
-	player.strafe_locked = false
-	player.step_locked = false
-	var tween := create_tween()
-	tween.tween_property(player.sprite, "rotation", 0, 0.1)
-	await tween.finished
-	
 
 
 func _left_crawl(_viewport: Node, _event: InputEvent, _shape_idx: int):
@@ -71,9 +60,24 @@ func _up_crawl(_viewport: Node, _event: InputEvent, _shape_idx: int):
 
 func _leftup_crawl(_viewport: Node, _event: InputEvent, _shape_idx: int):
 	if _event.is_action_pressed("leftclick") and not player.is_moving:
-		player.crawl(player.LEFTUP)
+		player.crawl(player.UPLEFT)
 
 
 func _rightup_crawl(_viewport: Node, _event: InputEvent, _shape_idx: int):
 	if _event.is_action_pressed("leftclick") and not player.is_moving:
-		player.crawl(player.RIGHTUP)
+		player.crawl(player.UPRIGHT)
+
+
+func _down_crawl(_viewport: Node, _event: InputEvent, _shape_idx: int):
+	if _event.is_action_pressed("leftclick") and not player.is_moving:
+		player.crawl(player.DOWN)
+
+
+func _leftdown_crawl(_viewport: Node, _event: InputEvent, _shape_idx: int):
+	if _event.is_action_pressed("leftclick") and not player.is_moving:
+		player.crawl(player.DOWNLEFT)
+
+
+func _rightdown_crawl(_viewport: Node, _event: InputEvent, _shape_idx: int):
+	if _event.is_action_pressed("leftclick") and not player.is_moving:
+		player.crawl(player.DOWNRIGHT)

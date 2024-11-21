@@ -12,7 +12,6 @@ func _ready() -> void:
 		state_node.finished.connect(_transition_to_next_state)
 	await owner.ready
 	state.enter("")
-	print("READY")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -28,6 +27,17 @@ func _physics_process(delta: float) -> void:
 
 
 func _transition_to_next_state(target_state_path: String, data: Dictionary = {}) -> void:
+	if not has_node(target_state_path):
+		printerr(owner.name + ": State does not exist! " + target_state_path)
+		return
+	var previous_state_path := state.name
+	state.exit()
+	state = get_node(target_state_path)
+	state.enter(previous_state_path, data)
+
+
+# TODO: Refactor code to use this func instead of _transition_to_next_state
+func change_state(target_state_path: String, data: Dictionary = {}) -> void:
 	if not has_node(target_state_path):
 		printerr(owner.name + ": State does not exist! " + target_state_path)
 		return

@@ -22,5 +22,6 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 
 func exit() -> void:
+#	await player.run_timer.timeout  # Is it needed?
 	player.strafe_locked = false
 	player.run_timer.timeout.disconnect(player.make_step)
